@@ -85,9 +85,6 @@ export default function Home() {
   const seats = seatCounts(wards, complete);
   const rounds = maxRound(wards);
   const history = roundsHistory(wards);
-  const roundOneDone = history[0]
-    ? totalVotes(history[0].member) + totalVotes(history[0].president) > 0
-    : false;
   const presTotalVotes = totalVotes(presTotals);
   const margin = Math.abs(presTotals.jsp - presTotals.tdp);
 
@@ -119,9 +116,7 @@ export default function Home() {
               liveViews={liveViews}
             />
           </div>
-          {!complete && roundOneDone && (
-            <div className="notice started">Round 1 counting started</div>
-          )}
+          <div className="notice started">round1 counting started</div>
           <div className="pills">
             <span className="pill">Counting starts from 2 PM</span>
             <span className="pill">Rounds counted: {rounds}</span>

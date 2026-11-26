@@ -300,6 +300,7 @@ export default function Home() {
 
       <footer>
         <a href="/admin">Admin</a> · Placeholder candidate names will be replaced before counting.
+        <div style={{ marginTop: 6 }}>Built by <strong>Rakesh</strong></div>
       </footer>
     </>
   );

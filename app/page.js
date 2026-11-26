@@ -15,6 +15,10 @@ import {
   seatCounts,
 } from '../lib/calc';
 
+function percent(value, total) {
+  return total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+}
+
 function Bar({ option, value, total }) {
   const width = total > 0 ? Math.round((value / total) * 1000) / 10 : 0;
   return (
@@ -77,6 +81,15 @@ export default function Home() {
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
+  const memberTotals = wards.reduce(
+    (totals, ward) => {
+      const wardMember = contestTotals(ward.rounds, 'member');
+      for (const key of KEYS) totals[key] += wardMember[key];
+      return totals;
+    },
+    { jsp: 0, tdp: 0, nota: 0 },
+  );
+  const memberTotalVotes = totalVotes(memberTotals);
   const presResult = outcome(presTotals, complete);
   const seats = seatCounts(wards, complete);
   const rounds = maxRound(wards);
@@ -206,7 +219,7 @@ export default function Home() {
                   <div key={option}>
                     <div className="vote-line">
                       <span>
-                        <span className={`${option}-text`}>{LABELS[option]}</span>
+                        <strong className={`${option}-text`}>{LABELS[option]}</strong>
                         <span className="muted"> · </span>
                         <strong className="member-name">
                           {option === 'nota' ? 'NOTA' : ward.candidates.member[option]}
@@ -220,9 +233,16 @@ export default function Home() {
 
                 <div className="mini-title">President vote in this ward</div>
                 <div className="pres-mini">
-                  <span><span className="jsp-text">JSP+YCP</span> <strong>{pres.jsp}</strong></span>
-                  <span><span className="tdp-text">TDP</span> <strong>{pres.tdp}</strong></span>
+                  <span><strong className="jsp-text">JSP+YCP</strong> <strong>{pres.jsp}</strong></span>
+                  <span><strong className="tdp-text">TDP</strong> <strong>{pres.tdp}</strong></span>
                   <span>NOTA <strong>{pres.nota}</strong></span>
+                </div>
+
+                <div className="mini-title">Member vote share</div>
+                <div className="pres-mini">
+                  <span><strong className="jsp-text">JSP+YCP</strong> {percent(totals.jsp, total)}%</span>
+                  <span><strong className="tdp-text">TDP</strong> {percent(totals.tdp, total)}%</span>
+                  <span><strong>NOTA</strong> {percent(totals.nota, total)}%</span>
                 </div>
               </article>
             );
@@ -256,6 +276,32 @@ export default function Home() {
             </tbody>
           </table>
         </div>
+
+        <div className="section-title">
+          <h2>Vote share</h2>
+          <small>All {wards.length} wards combined</small>
+        </div>
+        <section className="summary">
+          {[
+            { title: 'Ward member vote share', totals: memberTotals, total: memberTotalVotes },
+            { title: 'President vote share', totals: presTotals, total: presTotalVotes },
+          ].map((section) => (
+            <div className="card" key={section.title}>
+              <h3>{section.title}</h3>
+              {KEYS.map((key) => (
+                <div key={key}>
+                  <div className="vote-line">
+                    <strong className={`${key}-text`}>{LABELS[key]}</strong>
+                    <strong>
+                      {section.totals[key]} · {percent(section.totals[key], section.total)}%
+                    </strong>
+                  </div>
+                  <Bar option={key} value={section.totals[key]} total={section.total} />
+                </div>
+              ))}
+            </div>
+          ))}
+        </section>
       </main>
 
       <footer>

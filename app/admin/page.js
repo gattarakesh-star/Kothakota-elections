@@ -15,5 +15,8 @@ export default async function AdminPage() {
   const authenticated = isAuthenticated(cookieStore.get(COOKIE)?.value);
 
   if (!authenticated) return <LoginForm />;
-  return <AdminForm initial={results} />;
+
+  const onVercel = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
+  const envReady = Boolean(process.env.GITHUB_TOKEN) || !onVercel;
+  return <AdminForm initial={results} envReady={envReady} />;
 }

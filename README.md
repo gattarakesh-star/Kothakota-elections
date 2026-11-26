@@ -42,6 +42,12 @@ Admin saves commit `data/results.json` to GitHub, which triggers a fresh Vercel 
 
 Leading/won status is calculated automatically. Tick **Counting complete** in admin to switch from "leading" to "won".
 
+## Troubleshooting
+
+- **`EROFS: read-only file system`** — `GITHUB_TOKEN` was missing, so the app tried to write to Vercel's read-only filesystem. Add `GITHUB_TOKEN` in Vercel env vars and redeploy. Newer builds show a clear warning on `/admin` instead.
+- **`GitHub write failed (403)`** — the PAT needs write access to this repo (fine-grained PAT: Contents = read and write).
+- **`GitHub write failed (409)`** — another save happened first; reload `/admin` and re-enter the round.
+
 ## Security note
 
 The PAT that was shared in chat should be revoked and replaced with a fresh token stored only in Vercel environment variables.

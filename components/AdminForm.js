@@ -15,7 +15,7 @@ function blankRows(wards) {
   return wards.map((ward) => ({ id: ward.id, member: blankVotes(), president: blankVotes() }));
 }
 
-export default function AdminForm({ initial }) {
+export default function AdminForm({ initial, envReady = true }) {
   const router = useRouter();
   const startingRound = initial.wards.reduce((max, ward) => {
     return Math.max(max, ...ward.rounds.map((round) => Number(round.round) || 0));
@@ -101,6 +101,14 @@ export default function AdminForm({ initial }) {
 
   return (
     <main className="admin-wrap">
+      {!envReady && (
+        <div className="admin-card" style={{ borderColor: '#f0a500', background: '#fff9e8' }}>
+          <strong>Setup needed:</strong> add the <code>GITHUB_TOKEN</code> environment variable in
+          Vercel (Project → Settings → Environment Variables) and redeploy. Until then, admin saves
+          cannot be stored.
+        </div>
+      )}
+
       <div className="admin-card">
         <h2>Counting control</h2>
         <p className="hint">

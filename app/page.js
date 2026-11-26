@@ -23,6 +23,7 @@ const MANUAL_WARD_RESULTS = {
   7: 'tdp',
   8: 'tdp',
   9: 'jsp',
+  10: 'tdp',
   11: 'tdp',
   12: 'tdp',
   13: 'tdp',

@@ -21,6 +21,7 @@ const MANUAL_WARD_RESULTS = {
   4: 'jsp',
   6: 'jsp',
   7: 'tdp',
+  8: 'tdp',
   9: 'jsp',
   11: 'tdp',
   12: 'tdp',

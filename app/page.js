@@ -120,7 +120,7 @@ export default function Home() {
   }
 
   const { meta, president, wards } = results;
-  const complete = Boolean(meta.countingComplete);
+  const complete = true;
   const presTotals = presidentTotals(wards);
   const presResult = { key: 'jsp', text: 'finally jsp ycp won... congratulations pakalapati Sunitha gaaru 🎉', cls: 'won jsp' };
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
@@ -141,7 +141,7 @@ export default function Home() {
   const seatLeader =
     seats.jsp === seats.tdp
       ? 'Seats are level'
-      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} is leading by ${Math.abs(seats.jsp - seats.tdp)}`;
+      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} won by ${Math.abs(seats.jsp - seats.tdp)}`;
 
   const stamp = serverUpdatedAt || meta.lastUpdated;
   const updated = stamp

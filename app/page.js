@@ -116,12 +116,8 @@ export default function Home() {
               liveViews={liveViews}
             />
           </div>
-          {!complete && (
-            rounds === 0 ? (
-              <div className="notice">Counting inka start avvaledhu</div>
-            ) : (
-              <div className="notice started">Round {rounds} counting started</div>
-            )
+          {!complete && rounds > 0 && (
+            <div className="notice started">Round {rounds} counting started</div>
           )}
           <div className="pills">
             <span className="pill">Counting starts from 2 PM</span>

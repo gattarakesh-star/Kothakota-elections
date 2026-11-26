@@ -126,6 +126,28 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     }
   }
 
+  async function resetViews() {
+    if (!window.confirm('Clear all recorded views? The counter will start from zero.')) return;
+    setBusy(true);
+    setMessage('');
+    setIsError(false);
+    try {
+      const response = await fetch('/api/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'reset-views' }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Could not clear views');
+      setMessage('Views cleared. New visits will be counted from zero.');
+    } catch (error) {
+      setMessage(error.message || 'Could not clear views');
+      setIsError(true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <main className="admin-wrap">
       {!envReady && (
@@ -269,11 +291,13 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
         <h2>Reset</h2>
         <p className="hint">
           “Clear form” only empties the inputs on this screen. “Reset all” deletes every saved round
-          and turns status back to in-progress — candidate names are kept.
+          and turns status back to in-progress — candidate names are kept. “Reset views” clears the
+          visitor counter.
         </p>
         <div className="btn-row">
           <button className="btn secondary" onClick={clearForm} disabled={busy}>Clear form fields</button>
           <button className="btn danger" onClick={resetAll} disabled={busy}>Reset all rounds</button>
+          <button className="btn danger" onClick={resetViews} disabled={busy}>Reset views</button>
         </div>
         {message && <p className={`msg ${isError ? 'err' : 'ok'}`}>{message}</p>}
       </div>

@@ -30,6 +30,7 @@ export default function Home() {
   const [serverUpdatedAt, setServerUpdatedAt] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [views, setViews] = useState(0);
+  const [liveViews, setLiveViews] = useState(0);
 
   const load = useCallback(async () => {
     setRefreshing(true);
@@ -41,6 +42,7 @@ export default function Home() {
       setSource(json.source || 'unknown');
       setServerUpdatedAt(json.updatedAt || null);
       setViews(Number(json.views) || 0);
+      setLiveViews(Number(json.liveViews) || 0);
     } catch {
       setSource('offline');
     } finally {
@@ -102,7 +104,13 @@ export default function Home() {
               <h1>{meta.title}</h1>
               <p>{wards.length} wards · 1 ward member per ward · Sarpanch (president) vote</p>
             </div>
-            <AutoRefresh onRefresh={load} refreshing={refreshing} seconds={5} views={views} />
+            <AutoRefresh
+              onRefresh={load}
+              refreshing={refreshing}
+              seconds={5}
+              views={views}
+              liveViews={liveViews}
+            />
           </div>
           <div className="pills">
             <span className="pill">Counting from {meta.countingStartTime}</span>

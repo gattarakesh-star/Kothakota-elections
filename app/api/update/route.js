@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isAuthenticated, COOKIE } from '../../../lib/auth';
-import { readState, writeState } from '../../../lib/store';
+import { readState, writeState, clearViews } from '../../../lib/store';
 
 export const runtime = 'nodejs';
 
@@ -68,6 +68,12 @@ export async function POST(request) {
       data.meta.countingComplete = false;
       data.meta.lastUpdated = new Date().toISOString();
       await writeState(data, 'Reset all counting data', sha);
+      return NextResponse.json({ ok: true });
+    }
+
+    if (payload.mode === 'reset-views') {
+      const ok = await clearViews();
+      if (!ok) throw new Error('Could not clear views');
       return NextResponse.json({ ok: true });
     }
 

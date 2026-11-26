@@ -50,6 +50,11 @@ button, input { font: inherit; }
   font-weight: 800;
   font-size: 0.82rem;
 }
+.notice.started {
+  background: rgba(255, 92, 92, 0.16);
+  border-color: rgba(255, 140, 130, 0.55);
+  color: #ffb3ab;
+}
 .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .pill {
   background: rgba(255,255,255,0.14);

@@ -5,7 +5,7 @@
     "electionDate": "2026-11-26",
     "countingStartTime": "14:00",
     "countingComplete": false,
-    "lastUpdated": "2026-11-26T04:17:25.900Z",
+    "lastUpdated": "2026-11-26T04:18:20.155Z",
     "parties": {
       "jsp": {
         "name": "JSP + YCP",
@@ -53,6 +53,19 @@
             "tdp": 100,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 100,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 100,
+            "nota": 0
+          }
         }
       ]
     },
@@ -68,6 +81,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -103,6 +129,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -118,6 +157,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -153,6 +205,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -168,6 +233,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -203,6 +281,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -218,6 +309,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -253,6 +357,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -268,6 +385,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -303,6 +433,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -318,6 +461,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -353,6 +509,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -368,6 +537,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,
@@ -403,6 +585,19 @@
             "tdp": 0,
             "nota": 0
           }
+        },
+        {
+          "round": 2,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
         }
       ]
     },
@@ -418,6 +613,19 @@
       "rounds": [
         {
           "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        },
+        {
+          "round": 2,
           "member": {
             "jsp": 0,
             "tdp": 0,

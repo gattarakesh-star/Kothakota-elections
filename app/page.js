@@ -168,7 +168,7 @@ export default function Home() {
               liveViews={liveViews}
             />
           </div>
-          <div className="notice started">ivi kadha elections antey🔥</div>
+          <div className="notice started">president votes counting on🔥</div>
           <div className="pills">
             <span className="pill">Counting starts from 2 PM</span>
             <span className="pill">Rounds counted: {rounds}</span>

@@ -86,7 +86,6 @@ export async function POST(request) {
           if (!incoming) return ward;
           return {
             ...ward,
-            name: cleanName(incoming.name, ward.name),
             candidates: {
               member: {
                 jsp: cleanName(incoming.member?.jsp, ward.candidates.member.jsp),

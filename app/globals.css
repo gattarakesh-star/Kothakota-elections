@@ -99,7 +99,6 @@ main.shell { padding: 24px 16px 60px; }
 .ward-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
 .ward-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .ward-no { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: #ffe9ec; color: var(--jsp-party); font-weight: 800; font-size: 0.85rem; }
-.ward-name { font-weight: 700; margin-top: 8px; }
 .mini-title { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 14px 0 4px; font-weight: 700; }
 .vote-line { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 2px 0; }
 .vote-line strong { font-variant-numeric: tabular-nums; }
@@ -145,7 +144,7 @@ input:focus { outline: 2px solid #b8d0ff; border-color: var(--jsp); }
 
 .admin-table input[type="number"] { min-width: 78px; text-align: right; }
 .admin-table th, .admin-table td { padding: 8px 6px; }
-.admin-table .ward-label { min-width: 130px; font-weight: 600; }
+.admin-table .ward-label { min-width: 50px; font-weight: 600; }
 .field-group { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; }
 .field-group span { font-size: 0.62rem; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 .checkbox-line { display: flex; align-items: center; gap: 9px; font-size: 0.9rem; }

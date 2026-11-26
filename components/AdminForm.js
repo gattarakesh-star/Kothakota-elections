@@ -27,7 +27,6 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     president: { ...initial.president.candidates },
     wards: initial.wards.map((ward) => ({
       id: ward.id,
-      name: ward.name,
       member: { ...ward.candidates.member },
     })),
   }));
@@ -50,13 +49,6 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
       wards: previous.wards.map((ward, i) =>
         i === index ? { ...ward, member: { ...ward.member, [option]: value } } : ward,
       ),
-    }));
-  }
-
-  function updateWardName(index, value) {
-    setNames((previous) => ({
-      ...previous,
-      wards: previous.wards.map((ward, i) => (i === index ? { ...ward, name: value } : ward)),
     }));
   }
 
@@ -182,7 +174,7 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
               {rows.map((row, index) => (
                 <tr key={row.id}>
                   <td className="ward-label">
-                    {String(row.id).padStart(2, '0')} · {names.wards[index]?.name || ''}
+                    {String(row.id).padStart(2, '0')}
                   </td>
                   {CONTESTS.map((contest) =>
                     OPTIONS.map((option) => (
@@ -229,7 +221,7 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
         </label>
 
         <details>
-          <summary>Edit candidate and ward names</summary>
+          <summary>Edit candidate names</summary>
           <div className="names-grid">
             {['jsp', 'tdp'].map((option) => (
               <div className="name-item" key={`president-${option}`}>
@@ -250,13 +242,6 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
             {names.wards.map((ward, index) => (
               <div className="name-item" key={ward.id}>
                 <label>Ward {String(ward.id).padStart(2, '0')}</label>
-                <input
-                  type="text"
-                  maxLength={80}
-                  value={ward.name}
-                  onChange={(event) => updateWardName(index, event.target.value)}
-                  style={{ marginBottom: 6 }}
-                />
                 {['jsp', 'tdp'].map((option) => (
                   <div key={option} style={{ marginBottom: 5 }}>
                     <label style={{ fontSize: '0.66rem' }}>Member · {LABELS[option]}</label>

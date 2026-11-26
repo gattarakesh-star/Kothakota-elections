@@ -189,7 +189,6 @@ export default function Home() {
                 <div className="ward-head">
                   <div>
                     <span className="ward-no">{String(ward.id).padStart(2, '0')}</span>
-                    <div className="ward-name">{ward.name}</div>
                   </div>
                   <span className={`badge ${result.cls}`}>{result.text}</span>
                 </div>

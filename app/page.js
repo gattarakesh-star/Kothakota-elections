@@ -123,10 +123,15 @@ export default function Home() {
   const presTotals = presidentTotals(wards);
   const presResult = outcome(presTotals, complete);
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
+  const wardNumbers = { jsp: [], tdp: [], nota: [] };
   for (const ward of wards) {
     const key = MANUAL_WARD_RESULTS[Number(ward.id)];
-    if (key) seats[key] += 1;
-    else seats.undecided += 1;
+    if (key) {
+      seats[key] += 1;
+      wardNumbers[key].push(String(ward.id).padStart(2, '0'));
+    } else {
+      seats.undecided += 1;
+    }
   }
   const rounds = maxRound(wards);
   const history = roundsHistory(wards);
@@ -189,6 +194,8 @@ export default function Home() {
             </div>
             <div className="seat-row"><span>JSP + YCP</span><strong className="jsp-text">{seats.jsp}</strong></div>
             <div className="seat-row"><span>TDP</span><strong className="tdp-text">{seats.tdp}</strong></div>
+            <div className="seat-row"><span>JSP + YCP wards</span><strong className="jsp-text ward-numbers">{wardNumbers.jsp.join(', ') || '—'}</strong></div>
+            <div className="seat-row"><span>TDP wards</span><strong className="tdp-text ward-numbers">{wardNumbers.tdp.join(', ') || '—'}</strong></div>
             <div className="seat-row"><span>Not decided / NOTA</span><strong>{seats.undecided + seats.nota}</strong></div>
           </div>
 

@@ -94,6 +94,7 @@ main.shell { padding: 16px 12px 40px; }
 .summary .card h3 { color: var(--text); font-weight: 800; }
 .summary .card > .muted { font-weight: 700; }
 .summary .seat-row > span { font-weight: 700; }
+.ward-numbers { font-size: 0.7rem; text-align: right; }
 .big { font-size: 1.55rem; font-weight: 800; line-height: 1; }
 .muted { color: var(--muted); font-size: 0.85rem; }
 .seat-row { display: flex; justify-content: space-between; padding: 5px 0; border-top: 1px solid var(--line); font-size: 0.82rem; }

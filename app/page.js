@@ -81,15 +81,6 @@ export default function Home() {
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
-  const memberTotals = wards.reduce(
-    (totals, ward) => {
-      const wardMember = contestTotals(ward.rounds, 'member');
-      for (const key of KEYS) totals[key] += wardMember[key];
-      return totals;
-    },
-    { jsp: 0, tdp: 0, nota: 0 },
-  );
-  const memberTotalVotes = totalVotes(memberTotals);
   const presResult = outcome(presTotals, complete);
   const seats = seatCounts(wards, complete);
   const rounds = maxRound(wards);
@@ -277,7 +268,6 @@ export default function Home() {
         </div>
         <section className="summary">
           {[
-            { title: 'Ward member vote share', totals: memberTotals, total: memberTotalVotes },
             { title: 'President vote share', totals: presTotals, total: presTotalVotes },
           ].map((section) => (
             <div className="card" key={section.title}>

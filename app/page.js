@@ -134,7 +134,8 @@ export default function Home() {
               liveViews={liveViews}
             />
           </div>
-          <div className="notice started">Round1 counting started🔥</div>
+          <div className="notice started">Round1 counting started🔥
+                inka lekka pedutunnaru wait cheyyandi🥲 </div>
           <div className="pills">
             <span className="pill">Counting starts from 2 PM</span>
             <span className="pill">Rounds counted: {rounds}</span>

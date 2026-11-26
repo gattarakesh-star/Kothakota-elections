@@ -30,11 +30,10 @@ insert into public.election_state (id, data)
 values (1, '{}'::jsonb)
 on conflict (id) do nothing;
 
-alter table public.election_state enable row level security;
+alter table public.election_state disable row level security;
 
-create policy "public read election state"
-  on public.election_state for select
-  using (true);
+revoke all on public.election_state from anon, authenticated;
+grant select on public.election_state to anon, authenticated;
 ```
 
 3. In Project Settings → API, copy the **Project URL**, the **publishable/anon key**, and the **secret/service_role key**.

@@ -122,7 +122,7 @@ export default function Home() {
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
-  const presResult = { key: 'jsp', text: 'half votes counting done...jsp ycp is leading', cls: 'leading jsp' };
+  const presResult = { key: 'jsp', text: 'Recounting jarugutundhi antaa🔥', cls: 'pending' };
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
   const wardNumbers = { jsp: [], tdp: [], nota: [] };
   for (const ward of wards) {

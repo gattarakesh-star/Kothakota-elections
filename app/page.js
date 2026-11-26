@@ -28,8 +28,17 @@ function Bar({ option, value, total }) {
   );
 }
 
+function blankState(source) {
+  const copy = JSON.parse(JSON.stringify(source));
+  copy.meta.countingComplete = false;
+  copy.meta.lastUpdated = null;
+  for (const ward of copy.wards) ward.rounds = [];
+  return copy;
+}
+
 export default function Home() {
-  const [results, setResults] = useState(seed);
+  const [results, setResults] = useState(() => blankState(seed));
+  const [loaded, setLoaded] = useState(false);
   const [source, setSource] = useState('loading');
   const [serverUpdatedAt, setServerUpdatedAt] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -51,6 +60,7 @@ export default function Home() {
       setSource('offline');
     } finally {
       setRefreshing(false);
+      setLoaded(true);
     }
   }, []);
 
@@ -77,6 +87,14 @@ export default function Home() {
     const timer = setInterval(ping, 15000);
     return () => clearInterval(timer);
   }, []);
+
+  if (!loaded) {
+    return (
+      <main className="shell">
+        <div className="card loading-card">Loading live results…</div>
+      </main>
+    );
+  }
 
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);

@@ -76,6 +76,7 @@ button, input { font: inherit; }
 .refresh-btn:disabled { opacity: 0.6; cursor: default; }
 
 main.shell { padding: 16px 12px 40px; }
+.loading-card { margin-top: 24px; text-align: center; font-weight: 700; }
 
 .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 18px 0 8px; }
 .section-title h2 { margin: 0; font-size: 1rem; }

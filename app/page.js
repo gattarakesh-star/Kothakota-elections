@@ -12,12 +12,20 @@ import {
   totalVotes,
   maxRound,
   roundsHistory,
-  seatCounts,
 } from '../lib/calc';
 
 const MANUAL_WARD_RESULTS = {
+  1: 'jsp',
   2: 'tdp',
+  3: 'jsp',
+  4: 'jsp',
+  6: 'jsp',
   7: 'tdp',
+  9: 'jsp',
+  11: 'tdp',
+  12: 'tdp',
+  13: 'tdp',
+  14: 'tdp',
   16: 'jsp',
 };
 
@@ -34,9 +42,9 @@ function Bar({ option, value, total }) {
   );
 }
 
-function wardOutcome(wardId, totals, complete) {
+function wardOutcome(wardId) {
   const key = MANUAL_WARD_RESULTS[Number(wardId)];
-  if (!key) return outcome(totals, complete);
+  if (!key) return { key: 'none', text: 'Not declared', cls: 'pending' };
   return { key, text: `${LABELS[key]} won`, cls: `won ${key}` };
 }
 
@@ -112,15 +120,11 @@ export default function Home() {
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
   const presResult = outcome(presTotals, complete);
-  const seats = seatCounts(wards, complete);
-  for (const [id, key] of Object.entries(MANUAL_WARD_RESULTS)) {
-    const ward = wards.find((item) => Number(item.id) === Number(id));
-    if (!ward) continue;
-    const current = outcome(contestTotals(ward.rounds, 'member'), complete);
-    if (current.key === key) continue;
-    const bucket = current.key === 'none' || current.key === 'tie' ? 'undecided' : current.key;
-    seats[bucket] = Math.max(0, seats[bucket] - 1);
-    seats[key] += 1;
+  const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
+  for (const ward of wards) {
+    const key = MANUAL_WARD_RESULTS[Number(ward.id)];
+    if (key) seats[key] += 1;
+    else seats.undecided += 1;
   }
   const rounds = maxRound(wards);
   const history = roundsHistory(wards);
@@ -130,7 +134,7 @@ export default function Home() {
   const seatLeader =
     seats.jsp === seats.tdp
       ? 'Seats are level'
-      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} ${complete ? 'won' : 'leading'} by ${Math.abs(seats.jsp - seats.tdp)}`;
+      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} won by ${Math.abs(seats.jsp - seats.tdp)}`;
 
   const stamp = serverUpdatedAt || meta.lastUpdated;
   const updated = stamp
@@ -234,7 +238,7 @@ export default function Home() {
         <section className="ward-grid">
           {wards.map((ward) => {
             const totals = contestTotals(ward.rounds, 'member');
-            const result = wardOutcome(ward.id, totals, complete);
+            const result = wardOutcome(ward.id);
             const total = totalVotes(totals);
             const pres = contestTotals(ward.rounds, 'president');
             return (

@@ -238,12 +238,6 @@ export default function Home() {
                   <span>NOTA <strong>{pres.nota}</strong></span>
                 </div>
 
-                <div className="mini-title">Member vote share</div>
-                <div className="pres-mini">
-                  <span><strong className="jsp-text">JSP+YCP</strong> {percent(totals.jsp, total)}%</span>
-                  <span><strong className="tdp-text">TDP</strong> {percent(totals.tdp, total)}%</span>
-                  <span><strong>NOTA</strong> {percent(totals.nota, total)}%</span>
-                </div>
               </article>
             );
           })}

@@ -5,112 +5,431 @@
     "electionDate": "2026-11-26",
     "countingStartTime": "14:00",
     "countingComplete": false,
-    "lastUpdated": null,
+    "lastUpdated": "2026-11-26T04:17:25.900Z",
     "parties": {
-      "jsp": { "name": "JSP + YCP", "short": "JSP+YCP", "color": "#2f6fed" },
-      "tdp": { "name": "TDP", "short": "TDP", "color": "#f0a500" },
-      "nota": { "name": "NOTA", "short": "NOTA", "color": "#94a3b8" }
+      "jsp": {
+        "name": "JSP + YCP",
+        "short": "JSP+YCP",
+        "color": "#2f6fed"
+      },
+      "tdp": {
+        "name": "TDP",
+        "short": "TDP",
+        "color": "#f0a500"
+      },
+      "nota": {
+        "name": "NOTA",
+        "short": "NOTA",
+        "color": "#94a3b8"
+      }
     }
   },
   "president": {
-    "candidates": { "jsp": "Prasad Rao", "tdp": "Venkata Reddy" }
+    "candidates": {
+      "jsp": "Prasad Rao",
+      "tdp": "Venkata Reddy"
+    }
   },
   "wards": [
     {
       "id": 1,
       "name": "Rajapuram",
-      "candidates": { "member": { "jsp": "Ravi Kumar", "tdp": "Suresh Babu" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Ravi Kumar",
+          "tdp": "Suresh Babu"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 100,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 100,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 2,
       "name": "Venkatapuram",
-      "candidates": { "member": { "jsp": "Anil Naik", "tdp": "Mahesh Yadav" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Anil Naik",
+          "tdp": "Mahesh Yadav"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 3,
       "name": "Gopalapuram",
-      "candidates": { "member": { "jsp": "Srinivasulu", "tdp": "Bharat Kumar" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Srinivasulu",
+          "tdp": "Bharat Kumar"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 4,
       "name": "Lakshmipur",
-      "candidates": { "member": { "jsp": "Kishore Kumar", "tdp": "Dharmendra" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Kishore Kumar",
+          "tdp": "Dharmendra"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 5,
       "name": "Sivalayam",
-      "candidates": { "member": { "jsp": "Vijay Kumar", "tdp": "Ashok Rao" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Vijay Kumar",
+          "tdp": "Ashok Rao"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 6,
       "name": "Santhapuram",
-      "candidates": { "member": { "jsp": "Chandra Sekhar", "tdp": "Bhaskar Rao" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Chandra Sekhar",
+          "tdp": "Bhaskar Rao"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 7,
       "name": "New Colony",
-      "candidates": { "member": { "jsp": "Pavan Kumar", "tdp": "Rakesh Naik" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Pavan Kumar",
+          "tdp": "Rakesh Naik"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 8,
       "name": "Old Town",
-      "candidates": { "member": { "jsp": "Nagendra", "tdp": "Harish Kumar" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Nagendra",
+          "tdp": "Harish Kumar"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 9,
       "name": "Market Ward",
-      "candidates": { "member": { "jsp": "Santosh Kumar", "tdp": "Parameshwar" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Santosh Kumar",
+          "tdp": "Parameshwar"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 10,
       "name": "School Ward",
-      "candidates": { "member": { "jsp": "Ajay Kumar", "tdp": "Venu Gopal" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Ajay Kumar",
+          "tdp": "Venu Gopal"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 11,
       "name": "Temple Ward",
-      "candidates": { "member": { "jsp": "Deepak Kumar", "tdp": "Rambabu" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Deepak Kumar",
+          "tdp": "Rambabu"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 12,
       "name": "Hill Colony",
-      "candidates": { "member": { "jsp": "Manjunath", "tdp": "Eswara Rao" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Manjunath",
+          "tdp": "Eswara Rao"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 13,
       "name": "Canal Ward",
-      "candidates": { "member": { "jsp": "Shravan Kumar", "tdp": "Obulesu" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Shravan Kumar",
+          "tdp": "Obulesu"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 14,
       "name": "Main Road",
-      "candidates": { "member": { "jsp": "Vamsi Krishna", "tdp": "Gopi Krishna" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Vamsi Krishna",
+          "tdp": "Gopi Krishna"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 15,
       "name": "East Ward",
-      "candidates": { "member": { "jsp": "Arjun Kumar", "tdp": "Prabhakar" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Arjun Kumar",
+          "tdp": "Prabhakar"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     },
     {
       "id": 16,
       "name": "West Ward",
-      "candidates": { "member": { "jsp": "Yogesh Kumar", "tdp": "Vishnu Murthy" } },
-      "rounds": []
+      "candidates": {
+        "member": {
+          "jsp": "Yogesh Kumar",
+          "tdp": "Vishnu Murthy"
+        }
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "member": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          },
+          "president": {
+            "jsp": 0,
+            "tdp": 0,
+            "nota": 0
+          }
+        }
+      ]
     }
   ]
 }

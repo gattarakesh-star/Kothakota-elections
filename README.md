@@ -20,18 +20,9 @@ Without `GITHUB_TOKEN`, admin saves write to `data/results.json` on local disk.
 2. In **SQL Editor**, paste and run:
 
 ```sql
-create table if not exists public.election_state (
-  id int primary key check (id = 1),
-  data jsonb not null,
-  updated_at timestamptz not null default now()
-);
-
-insert into public.election_state (id, data)
-values (1, '{}'::jsonb)
-on conflict (id) do nothing;
-
+create table if not exists public.election_state (id int primary key, data jsonb not null, updated_at timestamptz not null default now());
+insert into public.election_state (id, data) values (1, '{}'::jsonb) on conflict (id) do nothing;
 alter table public.election_state disable row level security;
-
 revoke all on public.election_state from anon, authenticated;
 grant select on public.election_state to anon, authenticated;
 ```

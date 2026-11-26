@@ -28,6 +28,7 @@ const MANUAL_WARD_RESULTS = {
   12: 'tdp',
   13: 'tdp',
   14: 'tdp',
+  15: 'jsp',
   16: 'jsp',
 };
 

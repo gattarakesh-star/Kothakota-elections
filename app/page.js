@@ -137,7 +137,6 @@ export default function Home() {
   const rounds = maxRound(wards);
   const history = roundsHistory(wards);
   const presTotalVotes = totalVotes(presTotals);
-  const margin = Math.abs(presTotals.jsp - presTotals.tdp);
 
   const seatLeader =
     seats.jsp === seats.tdp
@@ -200,18 +199,8 @@ export default function Home() {
           </div>
 
           <div className="card">
-            <h3>President · total votes</h3>
-            <div className="big">
-              <span className="jsp-text">{presTotals.jsp}</span>
-              <span className="muted"> – </span>
-              <span className="tdp-text">{presTotals.tdp}</span>
-            </div>
-            <div className="muted">JSP + YCP vs TDP · margin {margin}</div>
-            <Bar option="jsp" value={presTotals.jsp} total={presTotalVotes} />
-            <Bar option="tdp" value={presTotals.tdp} total={presTotalVotes} />
-            <Bar option="nota" value={presTotals.nota} total={presTotalVotes} />
-            <div className="seat-row"><span>NOTA votes</span><strong>{presTotals.nota}</strong></div>
-            <div className="seat-row"><span>Total votes</span><strong>{presTotalVotes}</strong></div>
+            <h3>President</h3>
+            <div className={`badge ${presResult.cls}`}>{presResult.text}</div>
           </div>
 
           <div className="card">
@@ -234,8 +223,9 @@ export default function Home() {
               <div className="name">
                 {option === 'nota' ? 'None of the above' : president.candidates[option]}
               </div>
-              <div className={`votes ${option}-text`}>{presTotals[option]}</div>
-              <Bar option={option} value={presTotals[option]} total={presTotalVotes} />
+              {option === presResult.key && (
+                <div className={`badge ${presResult.cls}`}>{presResult.text}</div>
+              )}
             </div>
           ))}
         </section>

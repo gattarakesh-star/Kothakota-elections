@@ -15,6 +15,12 @@ import {
   seatCounts,
 } from '../lib/calc';
 
+const MANUAL_WARD_RESULTS = {
+  2: 'tdp',
+  7: 'tdp',
+  16: 'jsp',
+};
+
 function percent(value, total) {
   return total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
 }
@@ -26,6 +32,12 @@ function Bar({ option, value, total }) {
       <div className={`bar-fill bar-${option}`} style={{ width: `${width}%` }} />
     </div>
   );
+}
+
+function wardOutcome(wardId, totals, complete) {
+  const key = MANUAL_WARD_RESULTS[Number(wardId)];
+  if (!key) return outcome(totals, complete);
+  return { key, text: `${LABELS[key]} won`, cls: `won ${key}` };
 }
 
 function blankState(source) {
@@ -101,6 +113,15 @@ export default function Home() {
   const presTotals = presidentTotals(wards);
   const presResult = outcome(presTotals, complete);
   const seats = seatCounts(wards, complete);
+  for (const [id, key] of Object.entries(MANUAL_WARD_RESULTS)) {
+    const ward = wards.find((item) => Number(item.id) === Number(id));
+    if (!ward) continue;
+    const current = outcome(contestTotals(ward.rounds, 'member'), complete);
+    if (current.key === key) continue;
+    const bucket = current.key === 'none' || current.key === 'tie' ? 'undecided' : current.key;
+    seats[bucket] = Math.max(0, seats[bucket] - 1);
+    seats[key] += 1;
+  }
   const rounds = maxRound(wards);
   const history = roundsHistory(wards);
   const presTotalVotes = totalVotes(presTotals);
@@ -213,7 +234,7 @@ export default function Home() {
         <section className="ward-grid">
           {wards.map((ward) => {
             const totals = contestTotals(ward.rounds, 'member');
-            const result = outcome(totals, complete);
+            const result = wardOutcome(ward.id, totals, complete);
             const total = totalVotes(totals);
             const pres = contestTotals(ward.rounds, 'president');
             return (

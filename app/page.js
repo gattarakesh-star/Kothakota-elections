@@ -126,7 +126,7 @@ export default function Home() {
             />
           </div>
           <div className="pills">
-            <span className="pill">Counting from {meta.countingStartTime}</span>
+            <span className="pill">Counting starts from 2 PM</span>
             <span className="pill">Rounds counted: {rounds}</span>
             <span className="pill">Last update: {updated}</span>
             <span className="pill">Source: {source === 'supabase' ? 'Supabase (instant)' : source}</span>

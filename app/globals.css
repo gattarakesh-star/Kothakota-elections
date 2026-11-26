@@ -75,6 +75,9 @@ main.shell { padding: 16px 12px 40px; }
   box-shadow: 0 4px 14px rgba(23, 32, 51, 0.05);
 }
 .card h3 { margin: 0 0 7px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.summary .card h3 { color: var(--text); font-weight: 800; }
+.summary .card > .muted { font-weight: 700; }
+.summary .seat-row > span { font-weight: 700; }
 .big { font-size: 1.55rem; font-weight: 800; line-height: 1; }
 .muted { color: var(--muted); font-size: 0.85rem; }
 .seat-row { display: flex; justify-content: space-between; padding: 5px 0; border-top: 1px solid var(--line); font-size: 0.82rem; }

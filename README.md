@@ -14,22 +14,50 @@ npm run dev
 
 Without `GITHUB_TOKEN`, admin saves write to `data/results.json` on local disk.
 
+## Instant updates with Supabase (recommended)
+
+1. Create a free project at supabase.com.
+2. In **SQL Editor**, paste and run:
+
+```sql
+create table if not exists public.election_state (
+  id int primary key check (id = 1),
+  data jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+insert into public.election_state (id, data)
+values (1, '{}'::jsonb)
+on conflict (id) do nothing;
+
+alter table public.election_state enable row level security;
+
+create policy "public read election state"
+  on public.election_state for select
+  using (true);
+```
+
+3. In Project Settings → API, copy the **Project URL**, the **publishable/anon key**, and the **secret/service_role key**.
+
 ## Vercel setup
 
 1. Import this GitHub repo into Vercel (framework: Next.js, no build overrides needed).
-2. Add these Environment Variables in Vercel → Project → Settings → Environment Variables:
+2. Add these Environment Variables in Vercel → Project → Settings → Environment Variables (tick Production, Preview and Development):
 
 | Name | Value |
 | --- | --- |
 | `ADMIN_PASSWORD` | `admin123` (change anytime) |
 | `SESSION_SECRET` | a long random string |
-| `GITHUB_TOKEN` | a GitHub PAT with write access to this repo |
+| `SUPABASE_URL` | `https://xxxx.supabase.co` |
+| `SUPABASE_ANON_KEY` | publishable / anon key (used for public reads) |
+| `SUPABASE_SERVICE_KEY` | secret / service_role key (used for admin writes) |
+| `GITHUB_TOKEN` | optional fallback: a GitHub PAT with write access |
 | `GITHUB_REPO` | `gattarakesh-star/Kothakota-elections` |
 | `GITHUB_BRANCH` | `main` |
 
 3. Redeploy after adding variables.
 
-Admin saves commit `data/results.json` to GitHub, which triggers a fresh Vercel deployment with the new numbers.
+With Supabase configured, admin saves write straight to the database and the public page picks up changes within ~5 seconds — no redeploy. The GitHub variables are only a fallback.
 
 ## Data model
 

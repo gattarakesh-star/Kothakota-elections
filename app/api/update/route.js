@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isAuthenticated, COOKIE } from '../../../lib/auth';
-import { readState, writeState } from '../../../lib/github';
+import { readState, writeState } from '../../../lib/store';
 
 export const runtime = 'nodejs';
 

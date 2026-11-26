@@ -1,4 +1,7 @@
-import results from '../data/results.json';
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import seed from '../data/results.json';
 import AutoRefresh from '../components/AutoRefresh';
 import {
   KEYS,
@@ -22,6 +25,33 @@ function Bar({ option, value, total }) {
 }
 
 export default function Home() {
+  const [results, setResults] = useState(seed);
+  const [source, setSource] = useState('loading');
+  const [serverUpdatedAt, setServerUpdatedAt] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const load = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      const response = await fetch('/api/state', { cache: 'no-store' });
+      if (!response.ok) throw new Error('State unavailable');
+      const json = await response.json();
+      if (json.data?.wards?.length) setResults(json.data);
+      setSource(json.source || 'unknown');
+      setServerUpdatedAt(json.updatedAt || null);
+    } catch {
+      setSource('offline');
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+    const timer = setInterval(load, 5000);
+    return () => clearInterval(timer);
+  }, [load]);
+
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
@@ -31,11 +61,15 @@ export default function Home() {
   const history = roundsHistory(wards);
   const presTotalVotes = totalVotes(presTotals);
   const margin = Math.abs(presTotals.jsp - presTotals.tdp);
-  const updated = meta.lastUpdated
-    ? new Date(meta.lastUpdated).toLocaleString('en-IN', {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      })
+
+  const seatLeader =
+    seats.jsp === seats.tdp
+      ? 'Seats are level'
+      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} ${complete ? 'won' : 'leading'} by ${Math.abs(seats.jsp - seats.tdp)}`;
+
+  const stamp = serverUpdatedAt || meta.lastUpdated;
+  const updated = stamp
+    ? new Date(stamp).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
     : 'Not updated yet';
 
   return (
@@ -46,16 +80,15 @@ export default function Home() {
             <div>
               <div className="eyebrow">Election counting centre</div>
               <h1>{meta.title}</h1>
-              <p>
-                {wards.length} wards · 1 ward member per ward · Sarpanch (president) vote
-              </p>
+              <p>{wards.length} wards · 1 ward member per ward · Sarpanch (president) vote</p>
             </div>
-            <AutoRefresh seconds={60} />
+            <AutoRefresh onRefresh={load} refreshing={refreshing} seconds={5} />
           </div>
           <div className="pills">
             <span className="pill">Counting from {meta.countingStartTime}</span>
             <span className="pill">Rounds counted: {rounds}</span>
             <span className="pill">Last update: {updated}</span>
+            <span className="pill">Source: {source === 'supabase' ? 'Supabase (instant)' : source}</span>
             <span className={`pill badge ${presResult.cls}`}>President: {presResult.text}</span>
           </div>
         </div>
@@ -67,31 +100,40 @@ export default function Home() {
             <h3>Ward member seats</h3>
             <div className="big">
               <span className="jsp-text">{seats.jsp}</span>
-              <span className="muted"> / {wards.length}</span>
+              <span className="muted"> – </span>
+              <span className="tdp-text">{seats.tdp}</span>
             </div>
-            <div className="muted">JSP + YCP {complete ? 'won' : 'leading'}</div>
+            <div style={{ marginTop: 10 }}>
+              <span className={`badge ${seats.jsp === seats.tdp ? 'tie' : complete ? 'won' : 'leading'} ${seats.jsp > seats.tdp ? 'jsp' : 'tdp'}`}>
+                {seatLeader}
+              </span>
+            </div>
             <div className="seat-row"><span>JSP + YCP</span><strong className="jsp-text">{seats.jsp}</strong></div>
             <div className="seat-row"><span>TDP</span><strong className="tdp-text">{seats.tdp}</strong></div>
-            <div className="seat-row"><span>Not decided</span><strong>{seats.undecided + seats.nota}</strong></div>
+            <div className="seat-row"><span>Not decided / NOTA</span><strong>{seats.undecided + seats.nota}</strong></div>
           </div>
 
           <div className="card">
             <h3>President · total votes</h3>
-            <div className="big"><span className="jsp-text">{presTotals.jsp}</span></div>
-            <div className="muted">JSP + YCP vs <span className="tdp-text">{presTotals.tdp}</span> TDP</div>
+            <div className="big">
+              <span className="jsp-text">{presTotals.jsp}</span>
+              <span className="muted"> – </span>
+              <span className="tdp-text">{presTotals.tdp}</span>
+            </div>
+            <div className="muted">JSP + YCP vs TDP · margin {margin}</div>
             <Bar option="jsp" value={presTotals.jsp} total={presTotalVotes} />
             <Bar option="tdp" value={presTotals.tdp} total={presTotalVotes} />
             <Bar option="nota" value={presTotals.nota} total={presTotalVotes} />
-            <div className="seat-row"><span>Margin</span><strong>{margin}</strong></div>
-            <div className="seat-row"><span>NOTA</span><strong>{presTotals.nota}</strong></div>
+            <div className="seat-row"><span>NOTA votes</span><strong>{presTotals.nota}</strong></div>
+            <div className="seat-row"><span>Total votes</span><strong>{presTotalVotes}</strong></div>
           </div>
 
           <div className="card">
             <h3>Status</h3>
             <div className={`badge ${presResult.cls}`}>{presResult.text}</div>
-            <div className="seat-row"><span>Total president votes</span><strong>{presTotalVotes}</strong></div>
-            <div className="seat-row"><span>Rounds counted</span><strong>{rounds}</strong></div>
             <div className="seat-row"><span>Counting</span><strong>{complete ? 'Completed' : 'In progress'}</strong></div>
+            <div className="seat-row"><span>Rounds counted</span><strong>{rounds}</strong></div>
+            <div className="seat-row"><span>Last update</span><strong>{updated}</strong></div>
           </div>
         </section>
 

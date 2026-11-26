@@ -15,7 +15,7 @@ function blankRows(wards) {
   return wards.map((ward) => ({ id: ward.id, member: blankVotes(), president: blankVotes() }));
 }
 
-export default function AdminForm({ initial, envReady = true }) {
+export default function AdminForm({ initial, envReady = true, source = 'seed' }) {
   const router = useRouter();
   const startingRound = initial.wards.reduce((max, ward) => {
     return Math.max(max, ...ward.rounds.map((round) => Number(round.round) || 0));
@@ -103,14 +103,15 @@ export default function AdminForm({ initial, envReady = true }) {
     <main className="admin-wrap">
       {!envReady && (
         <div className="admin-card" style={{ borderColor: '#f0a500', background: '#fff9e8' }}>
-          <strong>Setup needed:</strong> add the <code>GITHUB_TOKEN</code> environment variable in
-          Vercel (Project → Settings → Environment Variables) and redeploy. Until then, admin saves
-          cannot be stored.
+          <strong>Setup needed:</strong> add <code>SUPABASE_URL</code> +{' '}
+          <code>SUPABASE_SERVICE_KEY</code> (recommended for instant updates), or <code>GITHUB_TOKEN</code>,
+          in Vercel → Environment Variables, then redeploy. Until then, admin saves cannot be stored.
         </div>
       )}
 
       <div className="admin-card">
         <h2>Counting control</h2>
+        <p className="hint">Storage: <strong>{source === 'supabase' ? 'Supabase (instant)' : source === 'github' ? 'GitHub (needs redeploy)' : 'local file'}</strong></p>
         <p className="hint">
           Enter the votes for one round in every ward. Each ward has a member vote and a president
           vote. Saving the same round number again replaces that round.

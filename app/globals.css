@@ -47,7 +47,17 @@ button, input { font: inherit; }
   border-radius: 999px;
   font-size: 0.78rem;
 }
-.live { color: #b9ffcf; font-weight: 600; }
+.live { color: #b9ffcf; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+.refresh-btn {
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+.refresh-btn:disabled { opacity: 0.6; cursor: default; }
 
 main.shell { padding: 24px 16px 60px; }
 

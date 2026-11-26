@@ -1,22 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-export default function AutoRefresh({ seconds = 60 }) {
-  const [left, setLeft] = useState(seconds);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLeft((value) => {
-        if (value <= 1) {
-          window.location.reload();
-          return seconds;
-        }
-        return value - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [seconds]);
-
-  return <span className="pill live">● Live · next refresh {left}s</span>;
+export default function AutoRefresh({ onRefresh, refreshing = false, seconds = 5 }) {
+  return (
+    <span className="pill live">
+      ● Live · updates every {seconds}s
+      <button className="refresh-btn" type="button" onClick={onRefresh} disabled={refreshing}>
+        {refreshing ? '…' : '↻ Refresh'}
+      </button>
+    </span>
+  );
 }

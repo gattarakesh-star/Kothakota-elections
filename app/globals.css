@@ -102,6 +102,7 @@ main.shell { padding: 24px 16px 60px; }
 .mini-title { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 14px 0 4px; font-weight: 700; }
 .vote-line { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 2px 0; }
 .vote-line strong { font-variant-numeric: tabular-nums; }
+.member-name { font-weight: 700; color: var(--text); }
 .pres-mini { display: flex; gap: 14px; font-size: 0.82rem; flex-wrap: wrap; }
 
 .badge { display: inline-block; padding: 4px 9px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }

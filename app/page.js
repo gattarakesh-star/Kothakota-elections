@@ -207,9 +207,10 @@ export default function Home() {
                     <div className="vote-line">
                       <span>
                         <span className={`${option}-text`}>{LABELS[option]}</span>
-                        <span className="muted">
-                          {' '}· {option === 'nota' ? 'NOTA' : ward.candidates.member[option]}
-                        </span>
+                        <span className="muted"> · </span>
+                        <strong className="member-name">
+                          {option === 'nota' ? 'NOTA' : ward.candidates.member[option]}
+                        </strong>
                       </span>
                       <strong>{totals[option]}</strong>
                     </div>

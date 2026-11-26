@@ -94,6 +94,7 @@ main.shell { padding: 16px 12px 40px; }
 .summary .card h3 { color: var(--text); font-weight: 800; }
 .summary .card > .muted { font-weight: 700; }
 .summary .seat-row > span { font-weight: 700; }
+.summary .card > .badge { font-size: 0.9rem; padding: 6px 11px; }
 .ward-numbers { font-size: 0.7rem; text-align: right; }
 .big { font-size: 1.55rem; font-weight: 800; line-height: 1; }
 .muted { color: var(--muted); font-size: 0.85rem; }
@@ -110,11 +111,12 @@ main.shell { padding: 16px 12px 40px; }
 .bar-tdp { background: var(--tdp); }
 .bar-nota { background: var(--nota); }
 
-.president-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-.candidate-box { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: #fbfcff; }
-.candidate-box .name { font-weight: 700; font-size: 0.95rem; }
-.candidate-box .party { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.president-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.candidate-box { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: #fbfcff; }
+.candidate-box .name { font-weight: 700; font-size: 1.15rem; }
+.candidate-box .party { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .candidate-box .votes { font-size: 1.5rem; font-weight: 800; margin-top: 4px; }
+.president-grid .badge { display: inline-block; margin-top: 10px; padding: 7px 12px; font-size: 0.95rem; }
 
 .ward-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
 .ward-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }

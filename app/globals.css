@@ -40,6 +40,16 @@ button, input { font: inherit; }
 .hero p { margin: 0; color: #cfe0ff; font-size: 0.82rem; }
 .hero .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; color: #9dc0ff; font-weight: 700; }
 
+.notice {
+  margin-top: 10px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  background: rgba(255, 214, 102, 0.16);
+  border: 1px solid rgba(255, 214, 102, 0.45);
+  color: #ffedb8;
+  font-weight: 800;
+  font-size: 0.82rem;
+}
 .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .pill {
   background: rgba(255,255,255,0.14);

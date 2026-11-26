@@ -141,7 +141,7 @@ export default function Home() {
   const seatLeader =
     seats.jsp === seats.tdp
       ? 'Seats are level'
-      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} won by ${Math.abs(seats.jsp - seats.tdp)}`;
+      : `${LABELS[seats.jsp > seats.tdp ? 'jsp' : 'tdp']} is leading by ${Math.abs(seats.jsp - seats.tdp)}`;
 
   const stamp = serverUpdatedAt || meta.lastUpdated;
   const updated = stamp

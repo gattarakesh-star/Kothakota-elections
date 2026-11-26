@@ -99,6 +99,41 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     router.refresh();
   }
 
+  function clearForm() {
+    setRows(blankRows(initial.wards));
+    setRound(1);
+    setMessage('Form fields cleared. Saved data is unchanged.');
+    setIsError(false);
+  }
+
+  async function resetAll() {
+    if (!window.confirm('Delete all rounds and set counting back to in-progress? Candidate names will stay.')) {
+      return;
+    }
+    setBusy(true);
+    setMessage('');
+    setIsError(false);
+    try {
+      const response = await fetch('/api/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'reset' }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Reset failed');
+      setRows(blankRows(initial.wards));
+      setRound(1);
+      setComplete(false);
+      setMessage('All rounds cleared. Counting is back in progress.');
+      router.refresh();
+    } catch (error) {
+      setMessage(error.message || 'Reset failed');
+      setIsError(true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <main className="admin-wrap">
       {!envReady && (
@@ -243,6 +278,19 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
             {busy ? 'Saving…' : 'Save names / status'}
           </button>
         </div>
+      </div>
+
+      <div className="admin-card">
+        <h2>Reset</h2>
+        <p className="hint">
+          “Clear form” only empties the inputs on this screen. “Reset all” deletes every saved round
+          and turns status back to in-progress — candidate names are kept.
+        </p>
+        <div className="btn-row">
+          <button className="btn secondary" onClick={clearForm} disabled={busy}>Clear form fields</button>
+          <button className="btn danger" onClick={resetAll} disabled={busy}>Reset all rounds</button>
+        </div>
+        {message && <p className={`msg ${isError ? 'err' : 'ok'}`}>{message}</p>}
       </div>
     </main>
   );

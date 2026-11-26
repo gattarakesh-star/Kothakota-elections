@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { readState } from '../../../lib/store';
+import { readState, readViewCount } from '../../../lib/store';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -7,8 +7,9 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const { data, source, updatedAt } = await readState();
+    const views = await readViewCount();
     return NextResponse.json(
-      { data, source, updatedAt },
+      { data, source, updatedAt, views },
       { headers: { 'Cache-Control': 'no-store' } },
     );
   } catch (error) {

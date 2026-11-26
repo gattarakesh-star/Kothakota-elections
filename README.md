@@ -26,6 +26,11 @@ alter table public.election_state disable row level security;
 revoke all on public.election_state from anon, authenticated;
 grant select on public.election_state to anon, authenticated;
 grant select, insert, update, delete on public.election_state to service_role;
+
+create table if not exists public.election_views (id text primary key, last_seen timestamptz not null default now());
+alter table public.election_views disable row level security;
+grant select on public.election_views to anon, authenticated;
+grant all on public.election_views to service_role;
 ```
 
 3. In Project Settings → API, copy the **Project URL**, the **publishable/anon key**, and the **secret/service_role key**.

@@ -63,6 +63,14 @@ export async function POST(request) {
       return NextResponse.json({ ok: true, round });
     }
 
+    if (payload.mode === 'reset') {
+      data.wards = data.wards.map((ward) => ({ ...ward, rounds: [] }));
+      data.meta.countingComplete = false;
+      data.meta.lastUpdated = new Date().toISOString();
+      await writeState(data, 'Reset all counting data', sha);
+      return NextResponse.json({ ok: true });
+    }
+
     if (payload.mode === 'settings') {
       const names = payload.names || {};
       const incomingPresident = names.president || {};

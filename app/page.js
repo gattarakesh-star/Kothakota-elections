@@ -29,6 +29,7 @@ export default function Home() {
   const [source, setSource] = useState('loading');
   const [serverUpdatedAt, setServerUpdatedAt] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [views, setViews] = useState(0);
 
   const load = useCallback(async () => {
     setRefreshing(true);
@@ -39,6 +40,7 @@ export default function Home() {
       if (json.data?.wards?.length) setResults(json.data);
       setSource(json.source || 'unknown');
       setServerUpdatedAt(json.updatedAt || null);
+      setViews(Number(json.views) || 0);
     } catch {
       setSource('offline');
     } finally {
@@ -51,6 +53,24 @@ export default function Home() {
     const timer = setInterval(load, 5000);
     return () => clearInterval(timer);
   }, [load]);
+
+  useEffect(() => {
+    let clientId = localStorage.getItem('kk_viewer_id');
+    if (!clientId) {
+      clientId = `v${Math.random().toString(36).slice(2)}-${Date.now()}`;
+      localStorage.setItem('kk_viewer_id', clientId);
+    }
+    const ping = () => {
+      fetch('/api/view', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId }),
+      }).catch(() => {});
+    };
+    ping();
+    const timer = setInterval(ping, 15000);
+    return () => clearInterval(timer);
+  }, []);
 
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
@@ -82,7 +102,7 @@ export default function Home() {
               <h1>{meta.title}</h1>
               <p>{wards.length} wards · 1 ward member per ward · Sarpanch (president) vote</p>
             </div>
-            <AutoRefresh onRefresh={load} refreshing={refreshing} seconds={5} />
+            <AutoRefresh onRefresh={load} refreshing={refreshing} seconds={5} views={views} />
           </div>
           <div className="pills">
             <span className="pill">Counting from {meta.countingStartTime}</span>

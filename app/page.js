@@ -122,7 +122,7 @@ export default function Home() {
   const { meta, president, wards } = results;
   const complete = Boolean(meta.countingComplete);
   const presTotals = presidentTotals(wards);
-  const presResult = { key: 'tdp', text: 'TDP leading', cls: 'leading tdp' };
+  const presResult = { key: 'jsp', text: 'JSP+YCP leading', cls: 'leading jsp' };
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
   const wardNumbers = { jsp: [], tdp: [], nota: [] };
   for (const ward of wards) {

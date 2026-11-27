@@ -54,9 +54,11 @@ button, input { font: inherit; }
   font-size: 0.82rem;
 }
 .notice.started {
-  background: rgba(255, 92, 92, 0.16);
-  border-color: rgba(255, 140, 130, 0.55);
-  color: #ffb3ab;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #ff3b3b;
+  font-size: 1rem;
 }
 .flash-news {
   display: flex;
@@ -64,10 +66,10 @@ button, input { font: inherit; }
   justify-content: center;
   gap: 10px;
   margin-bottom: 12px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: linear-gradient(90deg, rgba(225, 29, 42, 0.28), rgba(245, 158, 11, 0.2), rgba(225, 29, 42, 0.28));
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #ff4d4d;
   font-weight: 800;
   font-size: 0.95rem;
   text-align: center;
@@ -145,7 +147,22 @@ main.shell { padding: 16px 12px 40px; }
 .candidate-box .name { font-weight: 700; font-size: 1.15rem; }
 .candidate-box .party { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .candidate-box .votes { font-size: 1.5rem; font-weight: 800; margin-top: 4px; }
-.president-grid .badge { display: block; margin-top: 12px; padding: 14px 12px; font-size: 1.35rem; line-height: 1.25; text-align: center; white-space: normal; overflow-wrap: anywhere; }
+.president-grid .badge,
+.president-grid .badge.won.jsp {
+  display: block;
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--jsp-party);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
 .ward-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
 .ward-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }

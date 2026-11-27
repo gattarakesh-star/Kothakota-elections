@@ -54,10 +54,12 @@ button, input { font: inherit; }
   font-size: 0.82rem;
 }
 .notice.started {
-  padding: 0;
-  background: transparent;
-  border: 0;
-  color: #ff3b3b;
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(3, 12, 28, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #ff5b5b;
   font-size: 1rem;
 }
 .flash-news {
@@ -66,10 +68,11 @@ button, input { font: inherit; }
   justify-content: center;
   gap: 10px;
   margin-bottom: 12px;
-  padding: 6px 0;
-  border: 0;
-  background: transparent;
-  color: #ff4d4d;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(3, 12, 28, 0.34);
+  color: #ff6b6b;
   font-weight: 800;
   font-size: 0.95rem;
   text-align: center;

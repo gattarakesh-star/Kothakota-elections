@@ -240,7 +240,6 @@ export default function Home() {
           {wards.map((ward) => {
             const totals = contestTotals(ward.rounds, 'member');
             const result = wardOutcome(ward.id);
-            const total = totalVotes(totals);
             const pres = contestTotals(ward.rounds, 'president');
             return (
               <article className="card" key={ward.id}>
@@ -264,7 +263,6 @@ export default function Home() {
                       </span>
                       <strong>{totals[option]}</strong>
                     </div>
-                    <Bar option={option} value={totals[option]} total={total} />
                   </div>
                 ))}
 

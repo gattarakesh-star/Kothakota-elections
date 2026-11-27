@@ -156,9 +156,9 @@ export default function Home() {
         <div className="shell">
           {content.flashOn && content.flashNews && (
             <div className="flash-news">
-              <span className="flash-light" />
+              <span className="flash-light">🚨</span>
               <span className="flash-text">{content.flashNews}</span>
-              <span className="flash-light" />
+              <span className="flash-light">🚨</span>
             </div>
           )}
           <div className="hero-top">

@@ -30,8 +30,9 @@ button, input { font: inherit; }
 
 .hero {
   background:
-    radial-gradient(circle at 82% 18%, rgba(225, 29, 42, 0.42), transparent 38%),
-    linear-gradient(135deg, #081832 0%, #153b7a 52%, #7f1d2d 100%);
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.28), transparent 35%),
+    linear-gradient(135deg, #061426 0%, #0f2f5c 48%, #164a86 100%);
+  border-bottom: 3px solid #f5b301;
   color: #fff;
   padding: 20px 16px 26px;
   border-radius: 0 0 20px 20px;
@@ -77,11 +78,8 @@ button, input { font: inherit; }
 .flash-text { flex: 1; }
 .flash-light {
   flex: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ff2d2d;
-  box-shadow: 0 0 10px #ff2d2d, 0 0 20px #ff2d2d;
+  font-size: 1.25rem;
+  line-height: 1;
   animation: alarm 0.7s steps(2, end) infinite;
 }
 @keyframes alarm {

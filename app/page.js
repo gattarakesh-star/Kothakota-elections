@@ -122,7 +122,7 @@ export default function Home() {
   const { meta, president, wards } = results;
   const complete = true;
   const presTotals = presidentTotals(wards);
-  const presResult = { key: 'jsp', text: 'finally jsp ycp won... congratulations pakalapati Sunitha gaaru 🎉', cls: 'won jsp' };
+  const presResult = { key: 'jsp', text: 'Congratulations pakalapati Sunitha gaaru (jsp- ycp)', cls: 'won jsp' };
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
   const wardNumbers = { jsp: [], tdp: [], nota: [] };
   for (const ward of wards) {
@@ -172,7 +172,6 @@ export default function Home() {
             <span className="pill">Rounds counted: {rounds}</span>
             <span className="pill">Last update: {updated}</span>
             <span className="pill">Source: {source === 'supabase' ? 'Supabase (instant)' : source}</span>
-            <span className={`pill badge ${presResult.cls}`}>President: {presResult.text}</span>
           </div>
         </div>
       </header>
@@ -199,13 +198,7 @@ export default function Home() {
           </div>
 
           <div className="card">
-            <h3>President</h3>
-            <div className={`badge ${presResult.cls}`}>{presResult.text}</div>
-          </div>
-
-          <div className="card">
             <h3>Status</h3>
-            <div className={`badge ${presResult.cls}`}>{presResult.text}</div>
             <div className="seat-row"><span>Counting</span><strong>{complete ? 'Completed' : 'In progress'}</strong></div>
             <div className="seat-row"><span>Rounds counted</span><strong>{rounds}</strong></div>
             <div className="seat-row"><span>Last update</span><strong>{updated}</strong></div>

@@ -116,7 +116,7 @@ main.shell { padding: 16px 12px 40px; }
 .candidate-box .name { font-weight: 700; font-size: 1.15rem; }
 .candidate-box .party { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .candidate-box .votes { font-size: 1.5rem; font-weight: 800; margin-top: 4px; }
-.president-grid .badge { display: inline-block; margin-top: 10px; padding: 7px 12px; font-size: 0.95rem; }
+.president-grid .badge { display: block; margin-top: 12px; padding: 14px 12px; font-size: 1.35rem; line-height: 1.25; text-align: center; }
 
 .ward-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
 .ward-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }

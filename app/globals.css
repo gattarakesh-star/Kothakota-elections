@@ -29,10 +29,7 @@ a { color: inherit; }
 button, input { font: inherit; }
 
 .hero {
-  background:
-    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.28), transparent 35%),
-    linear-gradient(135deg, #061426 0%, #0f2f5c 48%, #164a86 100%);
-  border-bottom: 3px solid #f5b301;
+  background: linear-gradient(135deg, #0d2149 0%, #1746a2 55%, #2f6fed 100%);
   color: #fff;
   padding: 20px 16px 26px;
   border-radius: 0 0 20px 20px;
@@ -43,8 +40,8 @@ button, input { font: inherit; }
 
 .hero-top { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start; }
 .hero h1 { margin: 4px 0 4px; font-size: clamp(1.25rem, 3.2vw, 1.85rem); letter-spacing: -0.02em; }
-.hero p { margin: 0; color: #dbe7ff; font-size: 0.82rem; }
-.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; color: #ffd6a5; font-weight: 700; }
+.hero p { margin: 0; color: #cfe0ff; font-size: 0.82rem; }
+.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; color: #9dc0ff; font-weight: 700; }
 
 .notice {
   margin-top: 10px;
@@ -144,7 +141,6 @@ main.shell { padding: 16px 12px 40px; }
 
 .president-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
 .candidate-box { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: linear-gradient(180deg, #ffffff, #f8fafc); }
-.candidate-box:first-child { background: linear-gradient(180deg, #ffffff, #fff1f2); border-color: #fecdd3; }
 .candidate-box:nth-child(2) { background: linear-gradient(180deg, #ffffff, #fff8e7); border-color: #fde68a; }
 .candidate-box .name { font-weight: 700; font-size: 1.15rem; }
 .candidate-box .party { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }

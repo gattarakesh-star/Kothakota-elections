@@ -2,10 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { DEFAULT_CONTENT } from '../lib/content';
 
 const CONTESTS = ['member', 'president'];
 const OPTIONS = ['jsp', 'tdp', 'nota'];
 const LABELS = { jsp: 'JSP+YCP', tdp: 'TDP', nota: 'NOTA' };
+const CONTENT_LABELS = {
+  flashNews: 'Flash news text',
+  title: 'Main title',
+  subtitle: 'Header subtitle ({wards} = ward count)',
+  banner: 'Red status banner',
+  presidentMessage: 'President box message',
+  wardNote: 'Ward section note',
+  footerNote: 'Footer note',
+  credit: 'Footer credit',
+};
 
 function blankVotes() {
   return { jsp: '', tdp: '', nota: '' };
@@ -31,6 +42,10 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     })),
   }));
   const [complete, setComplete] = useState(Boolean(initial.meta.countingComplete));
+  const [content, setContent] = useState(() => ({
+    ...DEFAULT_CONTENT,
+    ...(initial.content || {}),
+  }));
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
@@ -52,6 +67,10 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     }));
   }
 
+  function updateContent(key, value) {
+    setContent((previous) => ({ ...previous, [key]: value }));
+  }
+
   async function save(mode) {
     setBusy(true);
     setMessage('');
@@ -59,7 +78,7 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
     const payload =
       mode === 'votes'
         ? { mode, round: Number(round), rows }
-        : { mode: 'settings', names, complete };
+        : { mode: 'settings', names, complete, content };
 
     try {
       const response = await fetch('/api/update', {
@@ -75,7 +94,7 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
         setRound((value) => Number(value) + 1);
         setMessage(`Round ${payload.round} saved.`);
       } else {
-        setMessage('Names and status saved.');
+        setMessage('Names, text boxes and status saved.');
       }
       router.refresh();
     } catch (error) {
@@ -227,6 +246,37 @@ export default function AdminForm({ initial, envReady = true, source = 'seed' })
           <a href="/" className="btn secondary">View public results</a>
         </div>
         {message && <p className={`msg ${isError ? 'err' : 'ok'}`}>{message}</p>}
+      </div>
+
+      <div className="admin-card">
+        <h2>Flash news &amp; all text boxes</h2>
+        <p className="hint">Edit any public text box. Flash news shows blinking alarm lights on both ends.</p>
+        <label className="checkbox-line">
+          <input
+            type="checkbox"
+            checked={Boolean(content.flashOn)}
+            onChange={(event) => updateContent('flashOn', event.target.checked)}
+          />
+          Show flash news bar
+        </label>
+        <div className="names-grid">
+          {Object.entries(CONTENT_LABELS).map(([key, label]) => (
+            <div className="name-item" key={key}>
+              <label>{label}</label>
+              <input
+                type="text"
+                maxLength={200}
+                value={content[key] || ''}
+                onChange={(event) => updateContent(key, event.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="btn-row">
+          <button className="btn" onClick={() => save('settings')} disabled={busy}>
+            {busy ? 'Saving…' : 'Save text boxes'}
+          </button>
+        </div>
       </div>
 
       <div className="admin-card">

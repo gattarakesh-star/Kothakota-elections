@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { isAuthenticated, COOKIE } from '../../../lib/auth';
 import { readState, writeState, clearViews } from '../../../lib/store';
+import { DEFAULT_CONTENT } from '../../../lib/content';
 
 export const runtime = 'nodejs';
 
@@ -20,6 +21,15 @@ function cleanVotes(votes = {}) {
 
 function cleanName(value, fallback = '') {
   return String(value ?? fallback).trim().slice(0, 80) || fallback;
+}
+
+function cleanContent(value = {}) {
+  const result = {};
+  for (const [key, fallback] of Object.entries(DEFAULT_CONTENT)) {
+    if (typeof fallback === 'boolean') result[key] = Boolean(value[key]);
+    else result[key] = String(value[key] ?? fallback).slice(0, 200);
+  }
+  return result;
 }
 
 export async function POST(request) {
@@ -101,9 +111,12 @@ export async function POST(request) {
           };
         });
       }
+      if (payload.content && typeof payload.content === 'object') {
+        data.content = { ...(data.content || {}), ...cleanContent(payload.content) };
+      }
       data.meta.countingComplete = Boolean(payload.complete);
       data.meta.lastUpdated = new Date().toISOString();
-      await writeState(data, 'Update candidate names and result status', sha);
+      await writeState(data, 'Update result text and status', sha);
       return NextResponse.json({ ok: true });
     }
 

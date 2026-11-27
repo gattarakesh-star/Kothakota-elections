@@ -12,6 +12,7 @@ import {
   maxRound,
   roundsHistory,
 } from '../lib/calc';
+import { DEFAULT_CONTENT } from '../lib/content';
 
 const MANUAL_WARD_RESULTS = {
   1: 'jsp',
@@ -120,9 +121,10 @@ export default function Home() {
   }
 
   const { meta, president, wards } = results;
+  const content = { ...DEFAULT_CONTENT, ...(results.content || {}) };
   const complete = true;
   const presTotals = presidentTotals(wards);
-  const presResult = { key: 'jsp', text: 'Congratulations pakalapati Sunitha gaaru (jsp- ycp)', cls: 'won jsp' };
+  const presResult = { key: 'jsp', text: content.presidentMessage, cls: 'won jsp' };
   const seats = { jsp: 0, tdp: 0, nota: 0, undecided: 0 };
   const wardNumbers = { jsp: [], tdp: [], nota: [] };
   for (const ward of wards) {
@@ -152,11 +154,18 @@ export default function Home() {
     <>
       <header className="hero">
         <div className="shell">
+          {content.flashOn && content.flashNews && (
+            <div className="flash-news">
+              <span className="flash-light" />
+              <span className="flash-text">{content.flashNews}</span>
+              <span className="flash-light" />
+            </div>
+          )}
           <div className="hero-top">
             <div>
               <div className="eyebrow">Election counting centre</div>
-              <h1>{meta.title}</h1>
-              <p>{wards.length} wards · 1 ward member per ward · Sarpanch (president) vote</p>
+              <h1>{content.title}</h1>
+              <p>{content.subtitle.replace('{wards}', wards.length)}</p>
             </div>
             <AutoRefresh
               onRefresh={load}
@@ -166,7 +175,7 @@ export default function Home() {
               liveViews={liveViews}
             />
           </div>
-          <div className="notice started">Elections done🔥</div>
+          <div className="notice started">{content.banner}</div>
           <div className="pills">
             <span className="pill">Counting starts from 2 PM</span>
             <span className="pill">Rounds counted: {rounds}</span>
@@ -225,7 +234,7 @@ export default function Home() {
 
         <div className="section-title">
           <h2>Ward results</h2>
-          <small>Member votes and president votes per ward</small>
+          <small>{content.wardNote}</small>
         </div>
         <section className="ward-grid">
           {wards.map((ward) => {
@@ -326,8 +335,8 @@ export default function Home() {
       </main>
 
       <footer>
-        <a href="/admin">Admin</a> · Placeholder candidate names will be replaced before counting.
-        <div style={{ marginTop: 6 }}>Built by <strong>Rakesh</strong></div>
+        <a href="/admin">Admin</a> · {content.footerNote}
+        <div style={{ marginTop: 6 }}>{content.credit}</div>
       </footer>
     </>
   );
